@@ -34,37 +34,20 @@ function Particle(){
 	//setup a random velocity
 	this.vx =Math.random()*20-10;
 	this.vy =Math.random()*20-10;
-	//give each a random color
-	var r = Math.random()*255>>0;
-	var g = Math.random()*255>>0;
-	var b = Math.random()*255>>0;
-	this.color = "rgba(" + r + "," + g + "," + b + ",0.5)";
-	//give random size
-	this.radius = Math.random()*20+20;
 }//end particle class
 function draw(){
-	
 	//redraw the bakground
-	//blends particles with background
-	ctx.globalCompositeOperation = "source-over";
-	ctx.fillStyle = "rgba(0,0,0,0.5)";
+	ctx.fillStyle = "black";
 	ctx.fillRect(0,0,W,H);
-	
-	ctx.globalCompositeOperation = "lighter";
 	//loop through the particles and change each one
 	for(var t=0;t<particles.length;t++){
 		//make a p var to refer to the current particle from the array
 		var p = particles[t];
 		//draw one partice
 		ctx.beginPath();
-		var gradient = ctx.createRadialGradient(p.x,p.y, 0, p.x,p.y, p.radius);
-		gradient.addColorStop(0, "white");
-		gradient.addColorStop(0.4, "white");
-		gradient.addColorStop(0.4, p.color);
-		gradient.addColorStop(1, "black");
-		ctx.fillStyle = gradient;
+		ctx.fillStyle = "white";
 		//make circle
-		ctx.arc(p.x,p.y,p.radius,Math.PI*2, false);
+		ctx.arc(p.x,p.y,40,Math.PI*2, false);
 		ctx.fill();
 		//move particle a little bit
 		p.x+=p.vx;
